@@ -1,6 +1,6 @@
 import { FirebaseDB } from "../../firebase/config";
 import { loadNotes } from "../../helpers/loadNotes";
-import { addNewEmptyNote, savingNewNote, setActiveNote, } from "./journalSlice";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, } from "./journalSlice";
 import { collection, doc, setDoc } from 'firebase/firestore/lite'
 
 
@@ -41,7 +41,9 @@ export const startLoadingNotes = () => {
 
         if (!uid) throw new Error('UID del usuario no axiste');
 
-        await loadNotes(uid);
+        const notes = await loadNotes(uid);
+
+        dispatch(setNotes(notes));
 
     };
 };
