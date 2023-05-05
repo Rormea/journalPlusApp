@@ -5,9 +5,10 @@ import { useMemo } from 'react';
 
 export const SideBarItem = ({ title, id, body }) => {
 
+    console.log(title.length)
 
     const newTitle = useMemo(() => {
-        return title.length > 17 ? `${title.substring(0, 17)}... ` : title;
+        return title.length > 10 ? title.substring(0, 10) + '...' : title;
     }, [title]);
 
     return (
